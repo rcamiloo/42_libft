@@ -6,13 +6,15 @@
 /*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 11:24:47 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/01/23 21:21:41 by rcamilo-         ###   ########.fr       */
+/*   Updated: 2020/02/08 19:13:47 by rcamilo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned long int	ft_strlen(const char *s)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
-	unsigned long int size;
+	size_t size;
 
 	size = 0;
 	while (*s)
