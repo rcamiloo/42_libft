@@ -6,13 +6,14 @@
 /*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 19:58:07 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/08 18:57:31 by rcamilo-         ###   ########.fr       */
+/*   Updated: 2020/02/13 19:51:09 by rcamilo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
+# include <unistd.h>
 
 char	*ft_strchr (const char *s, int c);
 char	*ft_strdup(const char *s1);
@@ -40,4 +41,13 @@ void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, unsigned long int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+char	*ft_itoa(int n);
+void	ft_revstr(char *s);
+char	*ft_strtrim(char const *s1, char const *set);
+char	**ft_split(char const *s, char c);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 #endif

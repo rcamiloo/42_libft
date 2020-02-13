@@ -6,34 +6,30 @@
 /*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 14:46:07 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/12 19:02:34 by rcamilo-         ###   ########.fr       */
+/*   Updated: 2020/02/13 19:31:56 by rcamilo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_nb_tokens(char const *s, char c)
+size_t		ft_nb_tokens(char const *s, char c)
 {
 	size_t		nb_tokens;
-	char const	*inf_limit;
-	char const	*sup_limit;
 
 	nb_tokens = 0;
-	inf_limit = s;
-	sup_limit = s;
-	while (*sup_limit)
+	while (*s)
 	{
-		inf_limit = sup_limit;
-		sup_limit = ft_strchr(inf_limit + 1, c);
-		if (!sup_limit)
-			break ;
-		if (sup_limit - inf_limit > 1)
+		while (*s == c)
+			s++;
+		if (*s)
 			nb_tokens++;
+		while (*s != c && *s)
+			s++;
 	}
 	return (nb_tokens);
 }
 
-size_t	ft_strclen(const char *s, char c)
+size_t		ft_strclen(const char *s, char c)
 {
 	size_t size;
 
@@ -46,36 +42,36 @@ size_t	ft_strclen(const char *s, char c)
 	return (size);
 }
 
-char	**ft_split(char const *s, char c)
+const char	*ft_worddup(char **array, const char *s, char c, size_t i)
+{
+	size_t	size_token;
+
+	size_token = ft_strclen(s, c);
+	if (!(array[i] = (char *)malloc(sizeof(char) * size_token + 1)))
+		return (NULL);
+	ft_memcpy(array[i], s, size_token);
+	array[i][size_token] = '\0';
+	return (s + size_token);
+}
+
+char		**ft_split(char const *s, char c)
 {
 	size_t	nb_tokens;
 	size_t	i;
-	size_t	size_token;
 	char	**result;
 
 	if (!s)
 		return (NULL);
-	nb_tokens = ft_nb_tokens(s, c) + 1;
-	result = malloc(sizeof(char *) * nb_tokens + 1);
-	if (!result)
+	nb_tokens = ft_nb_tokens(s, c);
+	if (!(result = malloc((nb_tokens + 1) * sizeof(char *))))
 		return (NULL);
-//	if (nb_tokens == 1)
-//		return (NULL);
 	i = 0;
-	while (i < nb_tokens && *s)
+	while (i <= nb_tokens && *s)
 	{
 		while (*s == c)
 			s++;
 		if (*s)
-		{
-			size_token = ft_strclen(s, c);
-			result[i] = (char *)malloc(sizeof(char) * size_token + 1);
-			if (!result[i])
-				return (NULL);
-			ft_memcpy(result[i], s, size_token);
-			result[i][size_token] = '\0';
-			s = s + size_token;
-		}
+			s = ft_worddup(result, s, c, i);
 		i++;
 	}
 	result[nb_tokens] = NULL;
