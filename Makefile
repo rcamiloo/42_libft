@@ -6,7 +6,7 @@
 #    By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/23 19:27:53 by rcamilo-          #+#    #+#              #
-#    Updated: 2020/02/08 15:47:36 by rcamilo-         ###   ########.fr        #
+#    Updated: 2020/02/14 17:39:24 by rcamilo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ all: $(NAME)
 $(NAME):
 	$(CC) $(CPARAMS) $(CFLAGS) $(SRCS)
 	$(AR) $(ARPARAMS) $(NAME) $(OBJS)
+
+bonus:	$(NAME)
 
 noflags:
 	$(CC) $(CPARAMS) $(SRCS)
