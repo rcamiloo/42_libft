@@ -6,7 +6,7 @@
 /*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:32:25 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/01/25 00:20:45 by rcamilo-         ###   ########.fr       */
+/*   Updated: 2020/02/18 17:49:49 by rcamilo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 			dst[d_size + i] = src[i];
 			i++;
 		}
-	dst[d_size + i] = '\0';
+	if (d_size + i <= dstsize)
+		dst[d_size + i] = '\0';
 	return (dstsize < d_size) ? (s_size + dstsize) : (d_size + s_size);
 }
