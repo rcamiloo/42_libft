@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 18:56:28 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/08 19:35:38 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/02/03 22:09:58 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/02/15 18:49:15 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	size_s1;
-	size_t	size_s2;
-	char	*dest;
+	char	*join;
+	int		i;
+	int		j;
 
-	size_s1 = 0;
-	size_s2 = 0;
-	if (s1)
-		size_s1 = ft_strlen(s1);
-	if (s2)
-		size_s2 = ft_strlen(s2);
-	dest = (char *)malloc(sizeof(char) * (size_s1 + size_s2) + 1);
-	if (dest == NULL)
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
 		return (NULL);
-	if (s1)
-		ft_memcpy(dest, s1, size_s1);
-	if (s2)
-		ft_memcpy(dest + size_s1, s2, size_s2);
-	dest[size_s1 + size_s2] = '\0';
-	return (dest);
+	if (!(join = (char *)malloc((ft_strlen(s1)
+		+ ft_strlen(s2) + 1) * sizeof(char))))
+		return (NULL);
+	while (s1[i])
+	{
+		join[j] = s1[i];
+		i++;
+		j++;
+	}
+	i = -1;
+	while (s2[++i])
+	{
+		join[j] = s2[i];
+		j++;
+	}
+	join[j] = '\0';
+	return (join);
 }

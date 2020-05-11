@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xubuntu <xubuntu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 19:09:14 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/14 20:39:35 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/24 16:41:34 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/05/10 18:52:12 by xubuntu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int ft_lstsize(t_list *lst)
 {
-	int		len;
-	t_list	*temp;
+	int i;
+	t_list *tmp;
 
-	len = 0;
-	temp = lst;
-	while (temp)
+	tmp = lst;
+	i = 0;
+	while (tmp)
 	{
-		len++;
-		temp = temp->next;
+		tmp = tmp->next;
+		i++;
 	}
-	return (len);
+	return i;
 }

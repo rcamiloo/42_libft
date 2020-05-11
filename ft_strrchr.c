@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strrch.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 14:59:55 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/01/24 19:30:52 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/24 18:49:42 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/01/25 17:28:34 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*last;
+	size_t end;
 
-	last = NULL;
-	if ((char)c == '\0')
+	end = ft_strlen(s) + 1;
+	while (end--)
 	{
-		s = s + ft_strlen(s);
-		return (char *)s;
+		if (s[end] == c)
+			return ((char*)(s + end));
 	}
-	while (*s)
-	{
-		if (*s == (char)c)
-			last = (char*)s;
-		s++;
-	}
-	return (last);
+	return (NULL);
 }

@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xubuntu <xubuntu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 20:19:00 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/14 20:34:31 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/24 16:41:34 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/05/10 18:49:31 by xubuntu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if ((*lst)->next)
-		ft_lstclear(&(*lst)->next, del);
-	ft_lstdelone(*lst, del);
-	*lst = NULL;
+	t_list *tmp;
+
+	if (lst)
+	{
+		while (*lst)
+		{
+			tmp = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = tmp;
+		}
+	}
 }

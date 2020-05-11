@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 21:24:22 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/14 22:09:21 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/02/03 20:44:28 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/05/10 02:59:20 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_isspace(int c)
+static int			ft_space(int c)
 {
 	if (c == '\n' || c == ' ' || c == '\v' || c == '\t'
 			|| c == '\r' || c == '\f')
@@ -21,11 +21,11 @@ int			ft_isspace(int c)
 		return (0);
 }
 
-static int	ft_overlimit(long n, int signal)
+static int	ft_overlimit(long n, int sinal)
 {
 	if (n > INT_MAX)
 	{
-		if (signal == 1)
+		if (sinal == 1)
 			return (1);
 		else if (n - 1 > INT_MAX)
 			return (-1);
@@ -33,31 +33,31 @@ static int	ft_overlimit(long n, int signal)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
-	int		signal;
-	long	result;
+	int res;
+	int sinal;
 
-	signal = 1;
-	result = 0;
-	while (ft_isspace(*str))
+	sinal = 1;
+	res = 0;
+	while (ft_space(*str))
 		str++;
 	if (*str == '-' || *str == '+')
 	{
-		signal = (*str == '-') ? -1 : 1;
+		sinal = (*str == '-') ? -1 : 1;
 		str++;
 	}
 	while (*str)
 	{
 		if (ft_isdigit(*str))
 		{
-			result = result * 10 + (*str - '0');
+			res = (res * 10) + (*str - '0');
 			str++;
-			if (ft_overlimit(result, signal))
-				return (ft_overlimit(result, signal) == 1 ? -1 : 0);
+			if (ft_overlimit(res, sinal))
+				return (ft_overlimit(res, sinal) == 1 ? -1 : 0);
 		}
-		else
-			return (signal * (int)result);
+		else 
+			return (sinal * (int)res);
 	}
-	return (signal * (int)result);
+	return (sinal * (int)res);
 }

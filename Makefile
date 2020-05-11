@@ -3,39 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/23 19:27:53 by rcamilo-          #+#    #+#              #
-#    Updated: 2020/02/14 17:39:24 by rcamilo-         ###   ########.fr        #
+#    Created: 2020/01/24 16:33:41 by cda-silv          #+#    #+#              #
+#    Updated: 2020/01/25 17:30:17 by cda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-SRCS = *.c
-OBJS = *.o
-CPARAMS = -c
+SRC = ft_*.c
+OBJ = $(subst .c,.o,$(SRC))
 CFLAGS = -Wall -Werror -Wextra
-CC = gcc
-AR = ar
-ARPARAMS = -rc
-
 all: $(NAME)
-
 $(NAME):
-	$(CC) $(CPARAMS) $(CFLAGS) $(SRCS)
-	$(AR) $(ARPARAMS) $(NAME) $(OBJS)
-
-bonus:	$(NAME)
-
-noflags:
-	$(CC) $(CPARAMS) $(SRCS)
-	$(AR) $(ARPARAMS) $(NAME) $(OBJS)
-
+	gcc $(CFLAGS) -c $(SRC)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 clean:
-	rm -f $(OBJS)
-
+	/bin/rm -f $(OBJ)
 fclean: clean
 	rm -f $(NAME)
-
 re: fclean all
-
+.PHONY: clean fclean all re

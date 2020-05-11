@@ -3,60 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 14:19:09 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/14 21:39:57 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/02/29 16:09:12 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/02/29 17:29:39 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_intlen(int n)
+static int	ft_len(long nb)
 {
-	int		len;
-	long	new;
+	int	len;
 
-	if (n == 0)
-		return (1);
 	len = 0;
-	new = n;
-	if (new < 0)
+	if (nb <= 0)
 	{
+		nb = nb * -1;
 		len++;
-		new = -new;
 	}
-	while (new)
+	while (nb > 0)
 	{
+		nb = nb / 10;
 		len++;
-		new = new / 10;
 	}
 	return (len);
 }
 
 char		*ft_itoa(int n)
 {
+	char	*str;
 	int		len;
-	char	*string;
-	int		isnegative;
-	long	i;
-	long	new;
+	long	nb;
 
-	len = ft_intlen(n);
-	isnegative = (n < 0) ? 1 : 0;
-	new = n;
-	new = (n < 0) ? -new : new;
-	if (!(string = (char *)malloc(sizeof(char) * len + 1)))
+	nb = n;
+	len = ft_len(nb);
+	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	i = 0;
-	while (i < len - isnegative)
+	str[len] = '\0';
+	if (nb == 0)
 	{
-		string[i] = new % 10 + '0';
-		new = new / 10;
-		i++;
+		str[0] = 48;
+		return (str);
 	}
-	string[len - 1] = (isnegative == 1) ? '-' : string[len - 1];
-	string[len] = '\0';
-	ft_revstr(string);
-	return (string);
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = nb * -1;
+	}
+	while (nb > 0)
+	{
+		str[--len] = 48 + (nb % 10);
+		nb = nb / 10;
+	}
+	return (str);
 }

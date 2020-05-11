@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 11:16:11 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/01/23 20:20:29 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/25 18:14:16 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/01/25 18:33:09 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "libft.h"
+
+int		ft_isprint(int c)
 {
-	return (c >= ' ' && c <= '~') ? 1 : 0;
+	return ((c >= 0040 && c <= 0176));
 }

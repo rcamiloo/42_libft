@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strch.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 14:59:55 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/01/24 16:31:54 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/24 18:34:26 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/01/25 17:09:13 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s && *s != (char)c)
-		s++;
-	return ((*s == (char)c) ? (char *)s : NULL);
+	if (*s == (char)c)
+		return ((char *)s);
+	else if (!*s)
+		return (0);
+	else
+		return (ft_strchr(++s, c));
 }

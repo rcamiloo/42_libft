@@ -3,37 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 19:58:07 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/07 20:17:36 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/25 21:34:22 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/01/26 00:32:45 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	unsigned char	*temp_d;
-	unsigned char	*temp_s;
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
 
-	temp_d = (unsigned char *)dst;
-	temp_s = (unsigned char *)src;
-	if ((!dst) && (!src) && n)
-		return (dst);
-	else
+	i = 0;
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	while (i < n)
 	{
-		while (n > 0 && *temp_s != (unsigned char)c)
-		{
-			*temp_d++ = *temp_s++;
-			n--;
-		}
-		if (n)
-		{
-			*temp_d++ = *temp_s++;
-			return (temp_d);
-		}
-		return (NULL);
+		d[i] = s[i];
+		if (s[i] == (unsigned char)c)
+			return (d + i + 1);
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/11 21:44:50 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/11 21:46:06 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/02/03 20:36:04 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/05/09 04:17:57 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t		size;
-	const char	*inf_limit;
-	const char	*sup_limit;
-	char		*result;
+	char		*new;
+	const char	*front_limit;
+	const char	*back_limit;
 
-	if (!s1)
+	if (!s1 || !set)
 		return (NULL);
 	size = ft_strlen(s1);
-	inf_limit = s1;
-	sup_limit = s1 + size - 1;
-	while (ft_strchr(set, *inf_limit) && inf_limit < sup_limit)
-		inf_limit++;
-	while (ft_strchr(set, *sup_limit) && sup_limit > inf_limit)
-		sup_limit--;
-	size = (sup_limit == inf_limit) ? 0 : sup_limit - inf_limit + 1;
-	result = (char *)malloc(sizeof(char) * size + 1);
-	if (result == NULL)
+	front_limit = s1;
+	back_limit = s1 + size - 1;
+	while (ft_strchr(set, *front_limit) && front_limit < back_limit)
+		front_limit++;
+	while (ft_strchr(set, *back_limit) && back_limit > front_limit)
+		back_limit--;
+	size = (back_limit == front_limit) ? 0 : back_limit - front_limit + 1;
+	new = (char *)malloc(sizeof(char) * size + 1);
+	if (new == 0)
 		return (NULL);
-	ft_memcpy(result, inf_limit, size);
-	result[size] = '\0';
-	return (result);
+	ft_memcpy(new, front_limit, size);
+	new[size] = '\0';
+	return (new);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 19:32:25 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/18 17:49:49 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/24 16:41:34 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/05/09 04:32:04 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t d_size;
-	size_t s_size;
+	size_t	s;
+	size_t	d;
+	size_t	i;
 
-	d_size = ft_strlen(dst);
-	s_size = ft_strlen(src);
+	d = ft_strlen(dst);
+	s = ft_strlen(src);
 	if (dstsize == 0)
-		return (s_size);
+		return (s);
 	i = 0;
-	if (dstsize > d_size)
-		while (src[i] && i < dstsize - d_size - 1)
+	if (dstsize > d)
+		while (src[i] && i < dstsize - d - 1)
 		{
-			dst[d_size + i] = src[i];
+			dst[d + i] = src[i];
 			i++;
 		}
-	if (d_size + i <= dstsize)
-		dst[d_size + i] = '\0';
-	return (dstsize < d_size) ? (s_size + dstsize) : (d_size + s_size);
+	if (d + i <= dstsize)
+		dst[d + i] = '\0';
+	return (dstsize < d) ? (s + dstsize) : (s + d);
 }

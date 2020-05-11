@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 16:00:05 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/20 15:20:31 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/02/29 16:43:18 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/02/29 16:45:12 by cda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_revstr(char *s)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	size_t	size;
-	size_t	i;
-	char	temp;
+	unsigned int	i;
 
-	size = ft_strlen(s);
 	i = 0;
-	while (i < size / 2)
+	while (src[i] != '\0' && i < n)
 	{
-		temp = s[i];
-		s[i] = s[size - 1 - i];
-		s[size - 1 - i] = temp;
+		dest[i] = src[i];
+		++i;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
 		i++;
 	}
+	return (dest);
 }

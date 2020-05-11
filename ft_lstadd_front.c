@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcamilo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xubuntu <xubuntu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 18:56:21 by rcamilo-          #+#    #+#             */
-/*   Updated: 2020/02/14 19:02:12 by rcamilo-         ###   ########.fr       */
+/*   Created: 2020/01/24 16:41:34 by cda-silv          #+#    #+#             */
+/*   Updated: 2020/05/10 18:48:38 by xubuntu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new->next = *lst;
-	*lst = new;
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
 }
